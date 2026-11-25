@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+*.db
+*.sqlite3
+campus_kart.db
+
+# Environment variables
+.env
+.env.local
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Large test uploads (keep sample)
+uploads/products/*
+!uploads/products/.gitkeep
+uploads/notes/*
+!uploads/notes/.gitkeep
+uploads/services/*
+!uploads/services/.gitkeep
+uploads/profiles/*
+!uploads/profiles/.gitkeep

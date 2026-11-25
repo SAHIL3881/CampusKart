@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Kart — Chandigarh University Student Marketplace & Community</title>
+  
+  <!-- Inter Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-text">
+          Campus<span>Kart</span>
+          <span class="brand-badge">CU Gharuan</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links">
+        <li><a class="nav-link active" data-route="home" href="#home">Home</a></li>
+        <li><a class="nav-link" data-route="marketplace" href="#marketplace">Marketplace</a></li>
+        <li><a class="nav-link" data-route="services" href="#services">Services</a></li>
+        <li><a class="nav-link" data-route="notes" href="#notes">Study Notes</a></li>
+        <li><a class="nav-link" data-route="about" href="#about">About</a></li>
+        <li><a class="nav-link" data-route="contact" href="#contact">Help</a></li>
+      </ul>
+
+      <!-- Nav Actions (Sell Button, Chat, Profile / Login) -->
+      <div class="nav-actions">
+        
+        <!-- Post / Sell Button -->
+        <button class="btn btn-primary btn-sm" onclick="App.openSellModal()">
+          <i class="fa-solid fa-plus"></i>
+          <span>Sell Item</span>
+        </button>
+
+        <!-- Chat / Messages Shortcut -->
+        <a href="#chat" class="btn btn-secondary btn-icon" title="Campus Messages">
+          <i class="fa-regular fa-comment-dots" style="font-size: 1.15rem; color: var(--dark-text);"></i>
+          <span id="chat-badge" class="badge-count" style="display: none;">0</span>
+        </a>
+
+        <!-- Dynamic User / Login Container -->
+        <div id="nav-auth-container">
+          <!-- Populated by App.renderNavUser() -->
+        </div>
+
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Main Single Page App View Container -->
+  <main id="app">
+    <!-- Populated by App.handleRouting() -->
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="footer-col">
+          <div class="brand" style="margin-bottom: 1rem;">
+            <div class="brand-icon" style="width: 34px; height: 34px; font-size: 1rem;">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="brand-text" style="font-size: 1.15rem;">
+              Campus<span>Kart</span>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--secondary-text); line-height: 1.6; margin-bottom: 1.25rem;">
+            The student-first community marketplace built for Chandigarh University. Buy, sell, rent electronics, books, bicycles, room essentials, and hire peer services safely on campus.
+          </p>
+          <div style="font-size: 0.8rem; color: var(--secondary-text);">
+            <i class="fa-solid fa-location-dot" style="color: var(--primary-blue);"></i> Chandigarh University, NH-05, Gharuan, Mohali, Punjab 140413
+          </div>
+        </div>
+
+        <!-- Col 2: Marketplace Links -->
+        <div class="footer-col">
+          <h5>Marketplace</h5>
+          <ul class="footer-links">
+            <li><a href="#marketplace">All Products</a></li>
+            <li><a href="javascript:void(0)" onclick="App.filterMarketplaceType('rent')">Campus Rentals</a></li>
+            <li><a href="javascript:void(0)" onclick="App.filterMarketplaceType('giveaway')">Free Giveaways</a></li>
+            <li><a href="#services">Student Services</a></li>
+            <li><a href="#notes">Study Notes</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Student Community -->
+        <div class="footer-col">
+          <h5>Community</h5>
+          <ul class="footer-links">
+            <li><a href="#about">About Campus Kart</a></li>
+            <li><a href="#contact">Safe Campus Meetups</a></li>
+            <li><a href="#chat">Messages</a></li>
+            <li><a href="#dashboard">My Dashboard</a></li>
+            <li><a href="#contact">Help & Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Expansion & Safety -->
+        <div class="footer-col">
+          <h5>Campuses</h5>
+          <ul class="footer-links">
+            <li><a href="#marketplace"><i class="fa-solid fa-circle-check" style="color: var(--green-accent);"></i> Chandigarh University (Live)</a></li>
+            <li><a href="javascript:void(0)" style="opacity: 0.6;">Panjab University (Coming Soon)</a></li>
+            <li><a href="javascript:void(0)" style="opacity: 0.6;">Chitkara University (Coming Soon)</a></li>
+            <li><a href="javascript:void(0)" style="opacity: 0.6;">CGC Landran (Coming Soon)</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Campus Kart. Designed with ❤️ for Chandigarh University Students.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#about" style="color: var(--secondary-text);">Privacy Policy</a>
+          <a href="#about" style="color: var(--secondary-text);">Terms of Service</a>
+          <a href="#contact" style="color: var(--secondary-text);">Community Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================== -->
+  <!-- MODALS -->
+  <!-- ============================================== -->
+
+  <!-- 1. Sell / Post Product Modal -->
+  <div id="sell-item-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-tag" style="color: var(--primary-blue);"></i> Post a Listing</h3>
+        <button class="modal-close-btn" onclick="App.closeSellModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="sell-item-form" onsubmit="App.handleSellFormSubmit(event)">
+          
+          <div class="form-group">
+            <label class="form-label">Product Title *</label>
+            <input type="text" name="title" class="form-control" placeholder="e.g. Casio fx-991EX Calculator / Lenovo IdeaPad Laptop" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Category *</label>
+              <select name="category" class="form-control" required>
+                <option value="Laptops and Electronics">Laptops and Electronics</option>
+                <option value="Books and Study Materials">Books and Study Materials</option>
+                <option value="Notes and Assignments">Notes and Assignments</option>
+                <option value="Bicycles and Bikes">Bicycles and Bikes</option>
+                <option value="Cameras and Photography Equipment">Cameras and Photography Equipment</option>
+                <option value="Hostel and Room Essentials">Hostel and Room Essentials</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Clothing and Accessories">Clothing and Accessories</option>
+                <option value="Sports Equipment">Sports Equipment</option>
+                <option value="Other Products">Other Products</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Listing Type *</label>
+              <select name="listing_type" id="sell-listing-type" class="form-control" onchange="document.getElementById('rental-fields').style.display = this.value === 'rent' ? 'block' : 'none';" required>
+                <option value="sale">For Sale</option>
+                <option value="rent">For Rent</option>
+                <option value="giveaway">Free / Giveaway</option>
+                <option value="purchase">Wanted / For Purchase</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Price (₹) *</label>
+              <input type="number" name="price" class="form-control" placeholder="e.g. 500 (Enter 0 for Free Giveaway)" min="0" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Condition *</label>
+              <select name="condition" class="form-control" required>
+                <option value="Brand New">Brand New</option>
+                <option value="Like New" selected>Like New</option>
+                <option value="Gently Used">Gently Used</option>
+                <option value="Fair">Fair</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Extra Fields for Rentals -->
+          <div id="rental-fields" style="display: none; background: var(--amber-accent-light); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.25rem; border: 1px dashed var(--amber-accent);">
+            <div class="form-row">
+              <div class="form-group" style="margin-bottom: 0.5rem;">
+                <label class="form-label">Rent Rate Period</label>
+                <select name="rent_rate_type" class="form-control">
+                  <option value="per day">Per Day</option>
+                  <option value="per week">Per Week</option>
+                  <option value="per month">Per Month</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 0.5rem;">
+                <label class="form-label">Security Deposit (₹)</label>
+                <input type="number" name="security_deposit" class="form-control" placeholder="e.g. 500" value="0" />
+              </div>
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 0; margin-top: 0.5rem;">
+              <label class="form-label">Rental Terms</label>
+              <input type="text" name="rental_terms" class="form-control" placeholder="e.g. CU Student ID required. Return before 9 PM." />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Campus Location *</label>
+            <input type="text" name="location" class="form-control" placeholder="e.g. Hostel Block 2, CU Gharuan / Student Centre" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Image URL(s) (Comma separated)</label>
+            <input type="text" name="image_urls" class="form-control" placeholder="Paste image link(s) or leave empty for default photo" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description *</label>
+            <textarea name="description" class="form-control" placeholder="Provide details about condition, reason for selling, inclusions, or meetup preferences..." required></textarea>
+          </div>
+
+          <button type="submit" id="sell-submit-btn" class="btn btn-primary btn-lg" style="width: 100%;">
+            Post Product Listing
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Offer Service Modal -->
+  <div id="offer-service-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-briefcase" style="color: var(--primary-blue);"></i> Offer a Student Service</h3>
+        <button class="modal-close-btn" onclick="App.closeServiceModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="offer-service-form" onsubmit="App.handleServiceFormSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Service Title *</label>
+            <input type="text" name="title" class="form-control" placeholder="e.g. 1-on-1 DSA Tutoring / Modern Hackathon PPT Design" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Service Category *</label>
+              <select name="category" class="form-control" required>
+                <option value="Project guidance and development assistance">Project Guidance & Assistance</option>
+                <option value="Programming and coding help">Programming & Coding Help</option>
+                <option value="Website development">Website Development</option>
+                <option value="Graphic design">Graphic Design</option>
+                <option value="Video editing">Video Editing</option>
+                <option value="Assignment tutoring and academic assistance">Assignment Tutoring & Mentorship</option>
+                <option value="Presentation and PPT design">Presentation & PPT Design</option>
+                <option value="Resume and portfolio creation">Resume & Portfolio Creation</option>
+                <option value="Photography">Photography</option>
+                <option value="Other student services">Other Services</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Starting Price (₹) *</label>
+              <input type="number" name="price" class="form-control" placeholder="e.g. 299" min="0" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Delivery Time *</label>
+              <input type="text" name="delivery_time" class="form-control" placeholder="e.g. 24 hours / 2-3 days / Hourly" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Cover / Portfolio Image URL</label>
+              <input type="url" name="image_url" class="form-control" placeholder="https://..." />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Service Description & Mentorship Details *</label>
+            <textarea name="description" class="form-control" placeholder="Explain your experience, tools used (Figma, React, C++, Adobe Premiere), and learning outcomes..." required></textarea>
+          </div>
+
+          <div style="font-size: 0.78rem; color: var(--secondary-text); margin-bottom: 1.25rem;">
+            * Remind clients that Campus Kart strictly supports ethical academic tutoring and guidance.
+          </div>
+
+          <button type="submit" id="service-submit-btn" class="btn btn-primary btn-lg" style="width: 100%;">
+            Publish Service Listing
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Upload Study Notes Modal -->
+  <div id="upload-notes-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-file-pdf" style="color: var(--primary-blue);"></i> Upload Study Notes</h3>
+        <button class="modal-close-btn" onclick="App.closeUploadNotesModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="upload-notes-form" onsubmit="App.handleNotesFormSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Notes Title *</label>
+            <input type="text" name="title" class="form-control" placeholder="e.g. Complete Operating Systems Solved Notes (CU Syllabus)" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Subject *</label>
+              <input type="text" name="subject" class="form-control" placeholder="e.g. Operating Systems" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Course / Degree *</label>
+              <input type="text" name="course" class="form-control" placeholder="e.g. B.Tech CSE, MBA, BBA" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Semester *</label>
+              <select name="semester" class="form-control" required>
+                <option value="Semester 1">Semester 1</option>
+                <option value="Semester 2">Semester 2</option>
+                <option value="Semester 3">Semester 3</option>
+                <option value="Semester 4">Semester 4</option>
+                <option value="Semester 5">Semester 5</option>
+                <option value="Semester 6">Semester 6</option>
+                <option value="Semester 7">Semester 7</option>
+                <option value="Semester 8">Semester 8</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Price (₹) (0 for Free) *</label>
+              <input type="number" name="price" class="form-control" placeholder="e.g. 99" min="0" value="49" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Total Pages</label>
+              <input type="number" name="total_pages" class="form-control" value="25" min="1" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Free Preview Pages</label>
+              <input type="number" name="preview_pages" class="form-control" value="3" min="1" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Upload PDF Document</label>
+            <input type="file" name="file" accept=".pdf" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Topics Covered & Key Highlights *</label>
+            <textarea name="description" class="form-control" placeholder="Mention units, solved previous year questions, diagrams included..." required></textarea>
+          </div>
+
+          <button type="submit" id="notes-submit-btn" class="btn btn-primary btn-lg" style="width: 100%;">
+            Publish Notes to Marketplace
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Edit Profile Modal -->
+  <div id="edit-profile-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-user-pen" style="color: var(--primary-blue);"></i> Edit Student Profile</h3>
+        <button class="modal-close-btn" onclick="App.closeEditProfileModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="App.handleEditProfileSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="edit-profile-name" class="form-control" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Course</label>
+              <input type="text" id="edit-profile-course" class="form-control" placeholder="e.g. B.Tech Computer Science" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Semester</label>
+              <input type="text" id="edit-profile-semester" class="form-control" placeholder="e.g. Semester 6" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone / WhatsApp</label>
+            <input type="text" id="edit-profile-phone" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Profile Photo URL</label>
+            <input type="url" id="edit-profile-photo" class="form-control" placeholder="https://..." />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Bio</label>
+            <textarea id="edit-profile-bio" class="form-control" placeholder="Tell campus peers about yourself..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/chat.js"></script>
+  <script src="/static/js/app.js"></script>
+
+</body>
+</html>
